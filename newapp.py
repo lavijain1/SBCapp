@@ -47,8 +47,9 @@ for feature in required_features:
 # Prediction
 if st.button("Predict SBC"):
     # Fill in missing features not shown in UI with 0
-    all_model_features = list(model.feature_names_in_)
-    full_input = {feat: input_values.get(feat, feature_medians[feat]) for feat in all_model_features}
+    feature_names = joblib.load("feature_names.pkl")  # <-- You must have saved this earlier during training
+
+    full_input = {feat: input_values.get(feat, feature_medians[feat]) for feat in feature_names}
     input_df = pd.DataFrame([full_input])
     
     # Scale and predict
