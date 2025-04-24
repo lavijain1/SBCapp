@@ -20,7 +20,7 @@ sheet_features = {
     "nps_shear": ['depth', 'water_table', 'density', 'angle','cohesion_kg_cm2','general_shear','local_shear','void_ratio','soil_type', 'problem_type'],
     "nps_settlement": ['depth','length', 'width','n_value', 'settlement', 'depth_factor','water_table','requried_settlement', 'soil_type', 'problem_type'],
     "clay_shear": ['depth',  'water_table', 'density', 'angle','cohesion_kg_cm2', 'general_shear','local_shear','void_ratio','recommended_sbc_t_m2', 'soil_type', 'problem_type'],
-    "clay_settlement": ['depth', 'length', 'width','settlement', 'depth_factor','void_ratio','cc', 'settlement', 'requried_settlement', 'soil_type', 'problem_type']
+    "clay_settlement": ['depth', 'length', 'width','settlement', 'depth_factor','void_ratio','cc', 'requried_settlement', 'soil_type', 'problem_type']
 }
 
 # Select soil and problem type
