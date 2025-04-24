@@ -17,10 +17,10 @@ st.markdown("### Select Conditions and Enter Relevant Parameters")
 
 # Define sheet-specific features
 sheet_features = {
-    "nps_shear": ['depth', 'water_table', 'density', 'angle', 'length', 'width', 'n_value', 'depth_factor', 'soil_type', 'problem_type'],
-    "nps_settlement": ['depth', 'density', 'length', 'width', 'settlement', 'requried_settlement', 'soil_type', 'problem_type'],
-    "clay_shear": ['depth', 'cohesion_kg_cm2', 'angle', 'void_ratio', 'length', 'width', 'soil_type', 'problem_type'],
-    "clay_settlement": ['depth', 'cc', 'length', 'width', 'settlement', 'requried_settlement', 'soil_type', 'problem_type']
+    "nps_shear": ['depth', 'water_table', 'density', 'angle','cohesion_kg_cm2','general_shear','local_shear','void_ratio','soil_type', 'problem_type'],
+    "nps_settlement": ['depth','length', 'width','n_value', 'settlement', 'depth_factor','water_table','requried_settlement', 'soil_type', 'problem_type'],
+    "clay_shear": ['depth',  'water_table', 'density', 'angle','cohesion_kg_cm2', 'general_shear','local_shear','void_ratio','recommended_sbc_t_m2', 'soil_type', 'problem_type'],
+    "clay_settlement": ['depth', 'length', 'width','settlement', 'depth_factor','void_ratio','cc', 'settlement', 'requried_settlement', 'soil_type', 'problem_type']
 }
 
 # Select soil and problem type
@@ -41,29 +41,9 @@ for feature in required_features:
         input_values[feature] = 0 if soil_type == "Non-plastic (NPS)" else 1
     elif feature == 'problem_type':
         input_values[feature] = 0 if problem_type == "Shear" else 1
-    elif feature in ['n_value']:
-        input_values[feature] = st.number_input("SPT-N Value", min_value=0)
-    elif feature in ['settlement', 'requried_settlement']:
-        input_values[feature] = st.number_input(f"{feature.replace('_', ' ').title()} (mm)", min_value=0.0)
-    elif feature in ['cohesion_kg_cm2']:
-        input_values[feature] = st.number_input("Cohesion (kg/cm²)", min_value=0.0)
-    elif feature in ['angle']:
-        input_values[feature] = st.number_input("Angle of Internal Friction (°)", min_value=0.0)
-    elif feature in ['density']:
-        input_values[feature] = st.number_input("Density (t/m³)", min_value=0.0)
-    elif feature in ['depth']:
-        input_values[feature] = st.number_input("Depth (m)", min_value=0.0)
-    elif feature in ['water_table']:
-        input_values[feature] = st.number_input("Water Table Depth (m)", min_value=0.0)
-    elif feature in ['void_ratio']:
-        input_values[feature] = st.number_input("Void Ratio", min_value=0.0)
-    elif feature in ['depth_factor']:
-        input_values[feature] = st.number_input("Depth Factor", min_value=0.0)
-    elif feature in ['cc']:
-        input_values[feature] = st.number_input("Compression Index (Cc)", min_value=0.0)
-    elif feature in ['length', 'width']:
-        input_values[feature] = st.number_input(f"{feature.capitalize()} (m)", min_value=0.0)
-
+    else:
+        label = feature.replace('_', ' ').title()
+        input_values[feature] = st.number_input(f"{label}", format="%.4f")
 # Prediction
 if st.button("Predict SBC"):
     # Fill in missing features not shown in UI with 0
