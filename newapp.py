@@ -12,7 +12,7 @@ feature_medians = joblib.load('feature_medians.pkl')  # <-- You need to save thi
 # Set page configuration
 st.set_page_config(page_title="SBC AI Tool", layout="centered")
 
-st.title("Safe Bearing Capacity (SBC) Prediction Tool")
+st.title("Safe Bearing Capacity (SBC) AI Tool")
 st.markdown("### Select Conditions and Enter Relevant Parameters")
 
 # Define sheet-specific features
