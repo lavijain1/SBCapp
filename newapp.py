@@ -10,7 +10,7 @@ scaler = joblib.load('scaler.pkl')
 feature_medians = joblib.load('feature_medians.pkl')  # <-- You need to save this when training
 
 # Set page configuration
-st.set_page_config(page_title="SBC Predictor", layout="centered")
+st.set_page_config(page_title="SBC AI Tool", layout="centered")
 
 st.title("Safe Bearing Capacity (SBC) Prediction Tool")
 st.markdown("### Select Conditions and Enter Relevant Parameters")
